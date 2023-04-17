@@ -1,10 +1,43 @@
-# PersonalityMachine
+# Personality Prediction App
+
+This is a simple app that predicts your personality type based on your responses to a set of questions.
+
+## Installation
+
+1. Clone the repository: `git clone https://github.com/username/personality-prediction.git`
+
+2. Install the dependencies:
+`cd personality-prediction`
+`pip install -r requirements.txt`
 
 
-To run the following program please ensure to have package "sklearn.ensemble" and from it import RandomForestClassifier
+## Usage
+
+1. Run the app:
+
+`python app.py`
 
 
-About this Project:
+2. Answer each question by typing 'y' for 'yes' or 'n' for 'no'.
 
-This program uses a machine learning model called a random forest classifier to analyze the user's responses to the questions and predict their personality type. The model has been trained on a dataset of responses and personality types, so it can use the patterns it learned from this data to make a prediction for the user's personality type based on their responses.
-Keep in mind that this is just a simple example, and a more sophisticated and accurate personality analysis would likely require a more complex and finely tuned machine learning model and a larger and more diverse dataset for training.
+3. The app will output a list of personality types ranked by probability, along with their corresponding probabilities.
+
+## Development
+
+1. Install the development dependencies:
+
+`pip install -r requirements-dev.txt`
+
+
+2. Run the tests:
+`pytest`
+
+
+3. Use the linter to check for code style and errors:
+
+`flake8`
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

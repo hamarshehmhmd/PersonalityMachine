@@ -1,4 +1,7 @@
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import cross_val_score
+from sklearn.preprocessing import StandardScaler
+import numpy as np
 
 # Define the questions to ask the user
 questions = [
@@ -17,26 +20,30 @@ questions = [
 # Ask the user each question and store their responses
 responses = []
 for question in questions:
-    response = input(question + " (y/n) ")
+    while True:
+        response = input(question + " (y/n) ")
+        if response in ['y', 'n']:
+            break
+        else:
+            print("Invalid input. Please enter 'y' or 'n'.")
     responses.append(response == "y")
+
+# Preprocess the data
+scaler = StandardScaler()
+responses = scaler.fit_transform([responses])
 
 # Use a machine learning model to predict the user's personality type based on their responses
 model = RandomForestClassifier()
-
-
-class X_train:
-    pass
-
-
+scores = cross_val_score(model, X_train, y_train, cv=5)
 model.fit(X_train, y_train)
-prediction = model.predict([responses])
+predictions = model.predict_proba(responses)
 
 # Output the prediction and an explanation of the personality traits associated with that type
-if prediction == "introverted":
-    print("You are an introverted personality type.")
-    print("Introverted individuals tend to be more reserved and introspective, and may prefer solitude to large social gatherings. They may also be more reflective and thoughtful, and may have a strong sense of their own values and beliefs.")
-elif prediction == "extroverted":
-    print("You are an extroverted personality type.")
-    print("Extroverted individuals tend to be more outgoing and sociable, and may enjoy being the center of attention. They may also be more energetic and adventurous, and may enjoy trying new things and taking risks.")
+if predictions.any():
+    labels = ['Introverted', 'Extroverted']
+    idx = np.argsort(predictions)[::-1]
+    for i in range(len(labels)):
+        print(f"{labels[idx[i]]}: {predictions[0][idx[i]]:.2f}")
 else:
     print("Unable to determine personality type.")
+
