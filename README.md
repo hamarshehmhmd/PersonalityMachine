@@ -7,7 +7,7 @@ This is a simple app that predicts your personality type based on your responses
 1. Clone the repository: `git clone https://github.com/hamarshehmhmd/PersonalityMachine.git`
 
 2. Install the dependencies:
-`cd personality-prediction`
+`cd PersonalityMachine`
 `pip install -r requirements.txt`
 
 
